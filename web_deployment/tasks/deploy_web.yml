@@ -1,0 +1,17 @@
+---
+    - name: Install python Flask dependencies
+      pip:
+        name: 
+          - flask
+          - flask-mysql
+          - cryptography
+        state: present
+        executable: pip3
+      
+    - name: Copy web-server code
+      copy:
+        src: app.py
+        dest: /opt/app.py
+
+    - name: Run web-server
+      shell: FLASK_APP=/opt/app.py flask run --host=0.0.0.0 &

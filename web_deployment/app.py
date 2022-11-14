@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from flaskext.mysql import MySQL      # For newer versions of flask-mysql 
-# from flask.ext.mysql import MySQL   # For older versions of flask-mysql
+
 app = Flask(__name__)
 
 mysql = MySQL()

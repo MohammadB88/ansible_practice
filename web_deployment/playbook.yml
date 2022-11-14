@@ -1,5 +1,5 @@
 - name: Deploy Web Application
-  hosts: db_and_web_server1,db_and_web_server2
+  hosts: db_and_web_servers
   vars:
     db_name: employee_db
     db_usr: db_user
@@ -17,48 +17,9 @@
           - python3-mysqldb
         state: present       
 
-    - name: Install MySQL database
-      apt:
-        name:
-          - mysql-server
-          - mysql-client
-        state: present
+    - name: Include tasks to install and configure the database
+      include_tasks: tasks/deploy_db.yml
 
-    - name: Start MySQL service
-      shell: service mysql start
-      # service:
-      #   name: mysql
-      #   state: started
-      #   enabled: true
-
-    - name: Create Application database
-      mysql_db:
-        name: "{{ db_name }}"
-        state: present
-        login_unix_socket: /var/run/mysqld/mysqld.sock
-
-    - name: Create Application DB User
-      mysql_user:
-        name: "{{ db_usr }}"
-        passwod: "{{ db_pass }}"
-        state: present
-        priv: '*.*:ALL'
-        host: '%'
-        login_unix_socket: /var/run/mysqld/mysqld.sock
+    - name: Include tasks to install and configure the web-app
+      include_tasks: tasks/deploy_web.yml
     
-    - name: Install python Flask dependencies
-      pip:
-        name: 
-          - flask
-          - flask-mysql
-          - cryptography
-        state: present
-        executable: pip3
-      
-    - name: Copy web-server code
-      copy:
-        src: app.py
-        dest: /opt/app.py
-
-    - name: Run web-server
-      shell: FLASK_APP=/opt/app.py flask run --host=0.0.0.0 &
