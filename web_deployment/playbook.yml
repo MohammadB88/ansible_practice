@@ -1,9 +1,5 @@
 - name: Deploy Web Application
-  hosts: db_and_web_servers
-  vars:
-    db_name: employee_db
-    db_usr: db_user
-    db_pass: Passw0rd
+  hosts: db_and_web_server
 
   tasks:
     - name: Install dependencies
