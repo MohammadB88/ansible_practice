@@ -3,7 +3,7 @@ In this project, I will use ansible on a host and use centos-based containers as
 
 Playbooks and file will be continuesly improved according to best practices. 
 
-##Content
+## Content
 1. web_deployment
     - install required packages
     - configure mysql database and web_app
