@@ -1,0 +1,36 @@
+---
+- name: Setup httpd and open firewall port
+  hosts: servers
+
+  tasks:
+    - name: Install apache package
+      yum:
+        name:
+          - httpd
+          - firewalld
+          - python3-firewall
+        state: present
+
+    - name: start and enable httpd
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: start and enable firewalld
+      service:
+        name: firewalld
+        state: started
+        enabled: true
+
+    - name: open port for http service
+      firewalld:
+        service: http
+        permanent: true
+        immediate: true
+        state: enabled
+
+    - name: restart firewalld service to load firewall changes
+      service:
+        name: firewalld
+        state: reloaded

@@ -1,0 +1,42 @@
+---
+- name: create a folder/file and see its status
+  hosts: servers
+
+  tasks:
+    - name: create a test directory
+      file:
+        path: /etc/testdir
+        owner: root
+        group: root
+        mode: 770
+        state: directory
+
+    - name: create a file in the test dir
+      file:
+        path: /etc/testdir/testfile.txt
+        state: touch
+        owner: root
+        group: root
+        mode: 644
+
+    - name: fill in the file with text
+      copy:
+        content: "This is a test file in the test dir"
+        dest: /etc/testdir/testfile.txt
+
+    - name: register the ourput
+      file:
+        name: /etc/testdir/testfile.txt
+      register: fs
+
+    - name: print out the status of the file
+      debug:
+        msg: file attributes {{ fs }}
+
+    - name: read in the content of the file
+      command: cat /etc/testdir/testfile.txt
+      register: fcontent
+
+    - name: print out the content of the file
+      debug:
+        msg: "file content is: {{ fcontent.stdout }}"
