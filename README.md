@@ -22,13 +22,19 @@ The Docker file to create these images are also provided in this repository.
 This image has systemctl feature and openssh server feature all setup. All you have to do is
 
 Build the image:
-    ''' docker build -t IMAGE_NAME:TAG . '''
+''' 
+docker build -t IMAGE_NAME:TAG . 
+'''
 
 Then, create the container with ports 80 and 22 open, privilaged access, and a map of files in the cgroup:
-    ''' docker run -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p 80:80 -p 2222:22 IMAGE_NAME/TAG '''
+''' 
+docker run -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p 80:80 -p 2222:22 IMAGE_NAME/TAG 
+'''
 
 or, if one wants to open the port for only an IP-Address, should run:
-    ''' docker run -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p IP_ADDRESS:80:80 -p IP_ADDRESS:2222:22 IMAGE_NAME/TAG '''
+''' 
+docker run -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p IP_ADDRESS:80:80 -p IP_ADDRESS:2222:22 IMAGE_NAME/TAG 
+'''
 
 __NOTE:__ In case of getting an error like: REMOTE HOST IDENTIFICATION HAS CHANGED!, you can solve the issue by deleting the *keys* inside the *.ssh/known_hosts* or simply deleting the whole file.
 
