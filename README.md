@@ -7,7 +7,7 @@ Playbooks and file will be continuesly improved according to best practices.
 __WARNING:__ USE THIS INSTRUCTION WITH CARE! THE BELOW IMAGES ARE TO BE USED FOR TEST PURPOSES ONLY AND SHOULD NOT BE YOUR REFERENCE FOR PRODUCTION ENVIRONMENT!
 
 
-[[_TOC_]]
+[[__TOC__]]
 
 # Table of Content
 ## Pre_requirements
@@ -27,7 +27,7 @@ Then, create the container with ports 80 and 22 open, privilaged access, and a m
 or, if one wants to open the port for only an IP-Address, should run:
     - ''' docker run --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p IP_ADDRESS:80:80 -p IP_ADDRESS:2222:22 NAME/TAG '''
 
-__NORE:__ In case of getting an error like: REMOTE HOST IDENTIFICATION HAS CHANGED!, you can solve the issue by deleting the *keys* inside the *.ssh/known_hosts* or simply deleting the whole file.
+__NOTE:__ In case of getting an error like: REMOTE HOST IDENTIFICATION HAS CHANGED!, you can solve the issue by deleting the *keys* inside the *.ssh/known_hosts* or simply deleting the whole file.
 
 
 ## 1. web_deployment
