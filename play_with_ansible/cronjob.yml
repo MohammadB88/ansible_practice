@@ -1,0 +1,37 @@
+---
+- name: create a cron job
+  hosts: servers
+
+  tasks:
+    - name: install crontabs package
+      yum:
+        name: crontabs
+        state: present
+
+    - name: start and enable crond
+      service:
+        name: crond
+        state: started
+        enabled: true
+
+    - name: schedule cron
+      cron:
+        name: This job is scheduled by ansible
+        minute: "*/3"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        user: root
+        job: "lsblk >> /tmp/block_devices"
+
+    - name: schedule another cron
+      cron:
+        name: This job is scheduled by ansible to put *
+        minute: "*/2"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        user: root
+        job: "echo '************************' >> /tmp/block_devices"
