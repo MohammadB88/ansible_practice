@@ -37,15 +37,15 @@ or, if one wants to open the port for only an IP-Address, should run:
     docker run -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
     -p IP_ADDRESS:80:80 -p IP_ADDRESS:2222:22 IMAGE_NAME/TAG 
 ```
-
+as explained in [Container networking](https://docs.docker.com/config/containers/container-networking/)
 
 __NOTE:__ In case of getting an error like: REMOTE HOST IDENTIFICATION HAS CHANGED!, you can solve the issue by deleting the *keys* inside the *.ssh/known_hosts* or simply deleting the whole file.
 
 
 ## 1. web_deployment
-     - install required packages
-     - configure mysql database and web_app
-     - deploy database and application
+- install required packages
+- configure mysql database and web_app
+- deploy database and application
 ## 2. play_with_ansible
-     - use files module to create a file and directory
-     - use service module to start httpd ad firewalld
+    - use files module to create a file and directory
+    - use service module to start httpd ad firewalld
