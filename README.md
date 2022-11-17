@@ -47,5 +47,5 @@ __NOTE:__ In case of getting an error like: REMOTE HOST IDENTIFICATION HAS CHANG
 - configure mysql database and web_app
 - deploy database and application
 ## 2. play_with_ansible
-    - use files module to create a file and directory
-    - use service module to start httpd ad firewalld
+- use files module to create a file and directory
+- use service module to start httpd ad firewalld
