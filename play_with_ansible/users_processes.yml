@@ -1,0 +1,33 @@
+---
+- name: Create users and manipulate processes
+  hosts: server5
+
+  tasks:
+    - name: Create users
+      user:
+        name: majid
+        home: /home/majid
+        shell: /bin/bash
+
+    - name: update the password for user
+      user:
+        name: majid
+        update_password: always
+        password: "{{ newpassword | password_hash('sha512') }}"
+
+    - name: remove the user
+      user:
+        name: majid
+        state: absent
+        remove: yes
+
+
+    - name: get the name or id of a process
+      shell: "ps -few | grep top | awk '{print $2}'"
+      register: running_process
+      ignore_errors: true
+
+    - name: kill the above process
+      shell: "kill {{ item }}"
+      with_items: "{{ running_process.stdout_lines }}"
+      ignore_errors: true

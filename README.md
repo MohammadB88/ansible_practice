@@ -67,3 +67,4 @@ __NOTE:__
 - use get_url and file module to download and manipulate files
 - use cron module to schedule jobs
 - use parted and mount module to partition, create, and mount storage devices
+- use user module to create users, assign them passwords, a trick to kill a specific process
