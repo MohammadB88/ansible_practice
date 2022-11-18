@@ -44,7 +44,9 @@ __NOTE:__
 
 - In case of a missing executable, one can find the right and relevant package call the command:
 ``` 
-yum whatprovides PACKAGE_NAME 
+    yum whatprovides PACKAGE_NAME  # for RPM based
+    apt-file search  PACKAGE_NAME  # for Debian based
+    
 ```
 
 ## 1. web_deployment
