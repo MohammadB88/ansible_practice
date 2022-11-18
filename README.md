@@ -39,8 +39,13 @@ or, if one wants to open the port for only an IP-Address, should run:
 ```
 as explained in [Container networking](https://docs.docker.com/config/containers/container-networking/)
 
-__NOTE:__ In case of getting an error like: REMOTE HOST IDENTIFICATION HAS CHANGED!, you can solve the issue by deleting the *keys* inside the *.ssh/known_hosts* or simply deleting the whole file.
+__NOTE:__ 
+- In case of getting an error like: REMOTE HOST IDENTIFICATION HAS CHANGED!, you can solve the issue by deleting the *keys* inside the *.ssh/known_hosts* or simply deleting the whole file.
 
+- In case of a missing executable, one can find the right and relevant package call the command:
+``` 
+yum whatprovides PACKAGE_NAME 
+```
 
 ## 1. web_deployment
 - install required packages
