@@ -62,5 +62,8 @@ __NOTE:__
 - configure mysql database and web_app
 - deploy database and application
 ## 2. play_with_ansible
-- use files module to create a file and directory
+- use file module to create a file and directory
 - use service module to start httpd ad firewalld
+- use get_url and file module to download and manipulate files
+- use cron module to schedule jobs
+- use parted and mount module to partition, create, and mount storage devices

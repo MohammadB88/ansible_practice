@@ -1,6 +1,6 @@
 ---
 - name: create and configure storage
-  hosts: servers
+  hosts: server1
 
   tasks:
     - name: partition the device
