@@ -1,0 +1,28 @@
+---
+- name: create and configure storage
+  hosts: servers
+
+  tasks:
+    - name: partition the device
+      community.general.parted:
+        device: /dev/sdb
+        state: present
+        number: 1
+
+    - name: format the partiton
+      filesystem:
+        fstype: xfs
+        dev: /dev/sdb
+
+    - name: create the mount directory
+      file:
+        path: /data/sdb
+        state: directory
+        mode: 0755
+
+    - name: mount the filesystem
+      mount:
+        path: /data/sdb
+        src: /dev/sdb
+        state: mounted
+        fstype: xfs
