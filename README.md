@@ -75,3 +75,4 @@ ansible-playbook PLAYBOOK_NAME --start-at-task 'TASK_NAME'
 - use parted and mount module to partition, create, and mount storage devices
 - use user module to create users, assign them passwords, a trick to kill a specific process
 - Use handlers to restart or reload services
+- Use conditions to run specific tasks
