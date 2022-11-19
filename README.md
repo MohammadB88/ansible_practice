@@ -76,3 +76,4 @@ ansible-playbook PLAYBOOK_NAME --start-at-task 'TASK_NAME'
 - use user module to create users, assign them passwords, a trick to kill a specific process
 - Use handlers to restart or reload services
 - Use conditions to run specific tasks
+- Use loop to avoid repetitive tasks

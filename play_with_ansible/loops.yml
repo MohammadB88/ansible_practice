@@ -1,0 +1,23 @@
+
+---
+- name: use loop to combine repetitive tasks
+  hosts: server3
+
+  vars:
+    users: [name1,name2,name3]
+
+  tasks:
+    - name: create users setting names direct in the task
+      user:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - name4
+        - name5
+        - name6
+
+    - name: create users using variables
+      user:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ users }}"
