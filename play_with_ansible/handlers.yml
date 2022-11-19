@@ -1,0 +1,77 @@
+---
+- name: Handlers - apache installation - firewalld configurations
+  hosts: server5
+
+  tasks:
+    - name: Ensure httpd is installed
+      yum:
+        name:
+          - httpd
+          - firewalld
+        state: latest
+
+    - name: Configure apache
+      copy:
+        src: /tmp/httpd.conf
+        dest: /etc/httpd.conf
+      notify:
+        - Restart apache
+
+    - name: Ensure apache is running
+      service:
+        name: httpd
+        state: started
+
+    - name: Ensure firewalld is running
+      service:
+        name: firewalld
+        state: started
+
+    - name: Open Port for http
+      firewalld:
+        service: http
+        state: enabled
+        immediate: true
+        permanent: true
+      notify:
+        - Reload firewalld
+
+
+  handlers:
+    - name: Restart apache
+      service:
+        name: httpd
+        state: restarted
+
+    - name: Reload firewalld
+      service:
+        name: firewalld
+        state: reloaded
+
+
+###### remove packages and configurations ######
+- name: remove apache and firewall
+  hosts: server5
+
+  tasks:
+    - name: stop httpd services
+      service:
+        name: httpd
+        state: stopped
+
+    - name: stop firewalld services
+      service:
+        name: firewalld
+        state: stopped
+
+    - name: delete relevant packages
+      yum:
+        name:
+          - httpd
+          - firewalld
+        state: absent
+
+    - name: remove httpd configuration file
+      file:
+        path: /etc/httpd.conf
+        state: absent
