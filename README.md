@@ -48,7 +48,7 @@ or, if one wants to open the port for only an IP-Address, should run:
 ```
 as explained in [Container networking](https://docs.docker.com/config/containers/container-networking/)
 
-__NOTE:__ 
+__NOTES:__ 
 - In case of getting an error like: REMOTE HOST IDENTIFICATION HAS CHANGED!, you can solve the issue by deleting the *keys* inside the *.ssh/known_hosts* or simply deleting the whole file.
 
 - In case of a missing executable, one can find the right and relevant package call the command:
@@ -56,6 +56,12 @@ __NOTE:__
     yum whatprovides PACKAGE_NAME  # for RPM based
     apt-file search  PACKAGE_NAME  # for Debian based
 ```
+
+- It is possible, specially for troubleshooting purposes, to play a playbook step by step using option *--step*, or start it from a specific task using option *--start-at-task* as:
+```
+ansible-playbook PLAYBOOK_NAME --start-at-task 'TASK_NAME'
+```
+
 
 ## 1. web_deployment
 - install required packages
